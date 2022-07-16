@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XFDL xmlns:custom="http://www.ibm.com/xmlns/prod/XFDL/Custom"
+      xmlns:designer="http://www.ibm.com/xmlns/prod/workplace/forms/designer/2.6"
+      xmlns:ev="http://www.w3.org/2001/xml-events"
+      xmlns:xfdl="http://www.ibm.com/xmlns/prod/XFDL/8.0"
+      xmlns:xforms="http://www.w3.org/2002/xforms"
+      xmlns="http://www.ibm.com/xmlns/prod/XFDL/8.0"
+      xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><globalpage sid="global"><global sid="global"><designer:date>20160127</designer:date><formid><title/><serialnumber>E46025391CB8543E:237ED46C:1528357D0CB:-7FFE</serialnumber><version>1.0.0</version></formid><pageloading><ondemand>enable</ondemand><loadallbefore>print</loadallbefore></pageloading><transmitformat>application/vnd.xfdl</transmitformat><saveformat>application/vnd.xfdl</saveformat><ufv_settings><submitwithformaterrors>deny</submitwithformaterrors><pagedonewithformaterrors>deny</pagedonewithformaterrors><printwithformaterrors>permit</printwithformaterrors><menu><open>hidden</open><save>hidden</save><refresh>hidden</refresh><accessibility>hidden</accessibility><wizard>hidden</wizard><about>hidden</about></menu><defaults><borderstyle>rounded</borderstyle><themecolor>#56565A</themecolor></defaults><mandatorycolor>#DDEAF0</mandatorycolor></ufv_settings><printsettings><pagelayout>tileOneDirection</pagelayout></printsettings><enclosuresettings><maxsize>20480</maxsize><totalsize>20480</totalsize></enclosuresettings><xformsmodels><xforms:model><xforms:instance id="OSCMETADATA" xmlns="">
+                  <data>
+                     <formName>OSC2001P2</formName>
+                     <formVersion>1.0.0</formVersion>
+                     <formCode>2016100350</formCode>
+                     <formSubCode>0</formSubCode>
+                     <formActivityCode>0</formActivityCode>
+                     <formActivitySubCode>0</formActivitySubCode>
+                     <formTemplateCode>100350</formTemplateCode>
+                     <eformName>Whistleblower</eformName>
+                     <formDescription>Whistleblower Supplemental</formDescription>
+                     <submissionID/>
+                  </data>
+               </xforms:instance><xforms:instance id="UPLOADFORM" xmlns="">
+                  <data>
+                     <formName>Whistleblower%20Supplemental</formName>
+                     <uploadFormId/>
+                     <uploadServerUrl/>
+                     <uploadServerInternalUrl/>
+                     <getUploadFormIdUrl/>
+                     <closeUploadFormIdUrl/>
+                     <callGetUploadFormId>false</callGetUploadFormId>
+                     <callSubmit>false</callSubmit>
+                  </data>
+               </xforms:instance><xforms:bind nodeset="instance('UPLOADFORM')/getUploadFormIdUrl"
+                            calculate="concat(../uploadServerInternalUrl, '/rest/upload/', instance('UPLOADFORM')/formName)"/><xforms:bind nodeset="instance('UPLOADFORM')/closeUploadFormIdUrl"
+                            calculate="concat(../uploadServerInternalUrl, '/rest/upload/submit/', instance('UPLOADFORM')/uploadFormId)"/><xforms:instance id="getUploadFormIdResponse" xmlns="">
+                  <formResponse>
+                     <status/>
+                     <formId/>
+                  </formResponse>
+               </xforms:instance><xforms:submission method="get"
+                                  mediatype="application/xml"
+                                  replace="instance"
+                                  instance="getUploadFormIdResponse"
+                                  includenamespaceprefixes=""
+                                  id="getUploadFormId"
+                                  xfdl:updatemodel="true"><xforms:resource value="instance('UPLOADFORM')/getUploadFormIdUrl"/><!--<xforms:header>
+                    <xforms:name value="instance('Control')/headerName"/>
+                     <xforms:value value="instance('Control')/headerValue"/>
+                  </xforms:header>--><xforms:action ev:event="xforms-submit"><xforms:setvalue ref="instance('getUploadFormIdResponse')/formId"/><xforms:setvalue ref="instance('getUploadFormIdResponse')/status"/></xforms:action><xforms:action ev:event="xforms-submit-done"><xforms:action if="instance('getUploadFormIdResponse')/status = 'success'"><xforms:message if="instance('getUploadFormIdResponse')/formId = ''" level="modal">The upload service didn't return a valid Form ID.  You will be unable to upload attachments if you continue.  Try again or contact the system administrator if the problem persists.</xforms:message><xforms:setvalue if="instance('getUploadFormIdResponse')/formId != ''"
+                                         ref="instance('UPLOADFORM')/uploadFormId"
+                                         value="instance('getUploadFormIdResponse')/formId"/></xforms:action><xforms:action if="instance('getUploadFormIdResponse')/status != 'success'"><xforms:message level="modal">The upload service threw the following error when trying to issue a Form ID: <xforms:output ref="instance('getUploadFormIdResponse')/message"/>  You will be unable to upload attachments if you continue.  Try again or contact the system administrator if the problem persists.</xforms:message></xforms:action></xforms:action><xforms:action ev:event="xforms-submit-error"><xforms:message level="modal">There was a problem communicating with the upload service.  You will be unable to upload attachments if you continue.  Try again or contact the system administrator if the problem persists.</xforms:message></xforms:action></xforms:submission><xforms:instance id="closeUploadFormIdResponse" xmlns="">
+                  <responseStatus>
+                     <status/>
+                     <messageId/>
+                     <message/>
+                  </responseStatus>
+               </xforms:instance><xforms:submission method="post"
+                                  mediatype="application/xml"
+                                  replace="instance"
+                                  instance="closeUploadFormIdResponse"
+                                  includenamespaceprefixes=""
+                                  id="closeUploadFormId"
+                                  xfdl:updatemodel="true"><xforms:resource value="instance('UPLOADFORM')/closeUploadFormIdUrl"/><xforms:action ev:event="xforms-submit"><xforms:setvalue ref="instance('closeUploadFormIdResponse')/status"/><xforms:setvalue ref="instance('closeUploadFormIdResponse')/messageId"/><xforms:setvalue ref="instance('closeUploadFormIdResponse')/message"/><xforms:setvalue ref="instance('UPLOADFORM')/callSubmit">false</xforms:setvalue></xforms:action><xforms:action ev:event="xforms-submit-done"><xforms:action if="instance('closeUploadFormIdResponse')/status = 'success'"><xforms:setvalue ref="instance('UPLOADFORM')/callSubmit">true</xforms:setvalue></xforms:action><xforms:action if="instance('closeUploadFormIdResponse')/status != 'success'"><xforms:action if="instance('closeUploadFormIdResponse')/messageId = 'form.already.submitted'"><xforms:setvalue ref="instance('UPLOADFORM')/callSubmit">true</xforms:setvalue></xforms:action><xforms:action if="instance('closeUploadFormIdResponse')/messageId != 'form.already.submitted'"><xforms:message level="modal">The upload service threw the following error when trying to close the form: <xforms:output ref="instance('closeUploadFormIdResponse')/message"/>  Try again or contact the system administrator if the problem persists.</xforms:message></xforms:action></xforms:action></xforms:action><xforms:action ev:event="xforms-submit-error"><xforms:message level="modal">There was a problem communicating with the upload service to close the form.  Try again or contact the system administrator if the problem persists.</xforms:message></xforms:action></xforms:submission><xforms:instance id="INSTANCE" xmlns="">
+                  <data>
+                     <SubmissionType>Supplemental</SubmissionType>
+                     <PrevSubmissionID/>
+                     <AddInfoComm/>
+                     <SupportingDocFlag/>
+                     <FilesToUploadFlag/>
+                     <SupportingDoc_row number="1">
+                        <SupportingDoc_DESC/>
+                        <SupportingDoc_HowObtained/>
+                        <SupportingDoc_RevealIdent/>
+                        <SupportingDoc_Filename/>
+                     </SupportingDoc_row>
+                     <FilesToMailFlag/>
+                     <OtherDocsFlag/>
+                     <OtherDocs_DESC/>
+                     <SuplmDecl/>
+                     <Submission_DT/>
+                  </data>
+               </xforms:instance><xforms:instance id="lists" xmlns="">
+                  <data>
+                     <YesNo>
+                        <choice value="yes">Yes</choice>
+                        <choice value="no">No</choice>
+                     </YesNo>
+                     <YesNoUnknown>
+                        <choice value="yes">Yes</choice>
+                        <choice value="no">No</choice>
+                        <choice value="unknown">I don't know</choice>
+                     </YesNoUnknown>
+                     <SuplmDeclaration>
+                        <SuplmDeclChoice value="CONF"/>
+                     </SuplmDeclaration>
+                  </data>
+               </xforms:instance><xforms:instance id="VARIABLES" xmlns="">
+                  <data>
+                     <SupportingDocCount>1</SupportingDocCount>
+                  </data>
+               </xforms:instance><xforms:instance id="TEMPLATE" xmlns="">
+                  <data>
+                     <SupportingDoc_row number="">
+                        <SupportingDoc_DESC/>
+                        <SupportingDoc_HowObtained/>
+                        <SupportingDoc_RevealIdent/>
+                        <SupportingDoc_Filename/>
+                     </SupportingDoc_row>
+                  </data>
+               </xforms:instance><!-- Comment Fields - mandatory binds --><xforms:bind nodeset="instance('INSTANCE')"
+                            id="ReadOnly"
+                            readonly="instance('OSCMETADATA')/submissionID != ''"
+                            required="false()"/><xforms:bind nodeset="instance('INSTANCE')/AddInfoComm" constraint="string-length(.) &lt;= 2000"/><xforms:bind nodeset="instance('INSTANCE')/SupportingDoc_row/SupportingDoc_DESC" constraint="string-length(.) &lt;= 200"/><xforms:bind nodeset="instance('INSTANCE')/SupportingDoc_row/SupportingDoc_HowObtained"
+                            constraint="string-length(.) &lt;= 200"/><xforms:bind nodeset="instance('INSTANCE')/SupportingDoc_row/SupportingDoc_RevealIdent"
+                            constraint="string-length(.) &lt;= 200"/><xforms:bind nodeset="instance('INSTANCE')/SupportingDoc_row/SupportingDoc_Filename"
+                            constraint="string-length(.) &lt;= 200"/><xforms:bind nodeset="instance('INSTANCE')/OtherDocs_DESC" constraint="string-length(.) &lt;= 1000"/></xforms:model></xformsmodels><history><editors><editor minversion="3.5.1" version="8.0.1">IBM Forms Designer</editor><editor minversion="3.5.1" version="8.2">IBM Forms Designer</editor></editors></history><designer:design><designer:designValue key="ListOfLists" xmlns="http://www.ibm.com/xmlns/prod/workplace/forms/designer/2.6">
+               <ListOfLists>
+                  <element key="instance('lists1')/SuplmDeclaration/SuplmDeclChoice" value="SuplmDeclaration2"/>
+                  <element key="instance('lists')/SuplmDeclaration/SuplmDeclChoice" value="SuplmDeclaration1"/>
+                  <element key="instance('lists')/YesNo/choice" value="YesNo"/>
+                  <element key="instance('Choice_Lists')/SuplmDeclaration/choice" value="SuplmDeclaration"/>
+                  <element key="instance('lists')/YesNoUnknown/choice" value="YesNoUnknown"/>
+                  <element key="instance('lists')/AddInfos/AddInfo" value="AddInfos"/>
+               </ListOfLists>
+            </designer:designValue></designer:design><custom:officeOfWbUrl>http://www.officeofthewhistleblower.ca</custom:officeOfWbUrl><custom:wbPolicyUrl>http://www.osc.gov.on.ca/en/SecuritiesLaw_20160714_15-601_policy-whistleblower-program.htm</custom:wbPolicyUrl><custom:faqUrl>http://www.osc.gov.on.ca/documents/en/Securities/osc-whistleblower-form-faqs.pdf</custom:faqUrl><!--custom:url>http://www.osc.gov.on.ca/</custom:url--><custom:uploadServer>AddressUSRLhere/depositbox</custom:uploadServer><custom:uploadServerInternal>http:/IPAddressorURLHere/depositbox</custom:uploadServerInternal><custom:setUploadUrlOnFormOpen xfdl:compute="&#xA;
+            (toggle(activated, 'off', 'on') == '1') &#xA;
+            ? set('instance(&quot;UPLOADFORM&quot;)/uploadServerUrl', custom:uploadServer, '', 'xforms') &#xA;
+              +. set('instance(&quot;UPLOADFORM&quot;)/uploadServerInternalUrl', custom:uploadServerInternal, '', 'xforms') &#xA;
+              +. set('instance(&quot;UPLOADFORM&quot;)/callGetUploadFormId', 'true', '', 'xforms') &#xA;
+            : ''"/><fontcolor>#56565A</fontcolor><printfontcolor>#000000</printfontcolor><fontinfo><fontname>Arial</fontname><size>10</size></fontinfo></global></globalpage><!-- Do not modify this comment. Page filtering is enabled. (1) --><page sid="PAGE1"><global sid="global"><label>PAGE1</label><designer:pagesize>960;800</designer:pagesize><next>PrevSubmissionID</next></global><field sid="UPLOADSERVERURL1"><xforms:input ref="instance('UPLOADFORM')/uploadServerUrl"><xforms:label/></xforms:input><scrollhoriz>wordwrap</scrollhoriz><scrollvert>fixed</scrollvert><layoutflow>block</layoutflow><itemlocation><x>644</x><y>31</y><width>40</width></itemlocation><label>Upload Server URL</label><visible>off</visible><printvisible>off</printvisible></field><field sid="CALLGETUPLOADFORMID1"><xforms:input ref="instance('UPLOADFORM')/callGetUploadFormId"><xforms:label/><xforms:action ev:event="xforms-value-changed"><xforms:send if="(. = 'true') and (instance('UPLOADFORM')/uploadFormId = '')" submission="getUploadFormId"/></xforms:action></xforms:input><scrollhoriz>wordwrap</scrollhoriz><scrollvert>fixed</scrollvert><layoutflow>block</layoutflow><itemlocation><x>685</x><y>31</y><width>40</width></itemlocation><label>Call GetUploadFormId</label><visible>off</visible><printvisible>off</printvisible></field><field sid="UPLOADFORMID1"><xforms:input ref="instance('UPLOADFORM')/uploadFormId"><xforms:label/></xforms:input><scrollhoriz>wordwrap</scrollhoriz><scrollvert>fixed</scrollvert><layoutflow>block</layoutflow><itemlocation><x>726</x><y>31</y><width>40</width></itemlocation><label>Upload Form ID</label><visible>off</visible><printvisible>off</printvisible></field><button sid="oscLogo"><itemlocation><x>27</x><y>25</y></itemlocation><image>PAGE1.OSC_WB_EN_Charcoal_small1</image><imagemode suppresstext="false">resize</imagemode><bgcolor>#FFFFFF</bgcolor><type>link</type><url compute="global.global.custom:officeOfWbUrl"/><border>off</border><cursortype>hand</cursortype></button><label sid="programTitle"><itemlocation><x>27</x><y>122</y><width>550</width></itemlocation><value>OSC Whistleblower Program</value><fontcolor>#2E6378</fontcolor><fontinfo><fontname>Arial</fontname><size>20</size><effect>bold</effect></fontinfo></label><label sid="formTitle"><itemlocation><x>27</x><y>182</y><width>875</width></itemlocation><value>Supplemental Whistleblower Submission Form</value><fontcolor>#2E6378</fontcolor><fontinfo><fontname>Arial</fontname><size>18</size><effect>bold</effect></fontinfo></label><label sid="asteriskInfoLbl1"><itemlocation><x>27</x><y>228</y></itemlocation><value>*</value><fontcolor>#FF0000</fontcolor><fontinfo><fontname>Arial</fontname><size>11</size><effect>bold</effect></fontinfo></label><label sid="asteriskInfoLbl2"><itemlocation><x>39</x><y>231</y><width>214</width></itemlocation><value>Indicates mandatory field.</value></label><box sid="bgBox1"><itemlocation><x>17</x><y>270</y><width>900</width><height>95</height></itemlocation><bgcolor>#EEEEEE</bgcolor><borderinfo><style>solid</style></borderinfo><printbgcolor>#FFFFFF</printbgcolor><border>off</border></box><label sid="LABEL3"><itemlocation><x>67</x><y>285</y><width>820</width></itemlocation><value>You may complete and submit this form if you wish to provide new/additional information to supplement a submission you previously made to the OSC's Office of the Whistleblower. Please refer to the original submission ID that you received at time of your initial submission of the Whistleblower Submission Form.</value></label><label sid="LABEL1"><itemlocation><x>27</x><y>377</y><width>853</width></itemlocation><value>Original Submission ID (example: WBF1234567890-123)</value><fontinfo><fontname>Arial</fontname><size>12</size></fontinfo></label><label sid="asteriskLbl1"><itemlocation><x>17</x><y>377</y></itemlocation><value>*</value><fontcolor>#FF0000</fontcolor><fontinfo><fontname>Arial</fontname><size>11</size><effect>bold</effect></fontinfo></label><field sid="PrevSubmissionID"><xforms:input ref="instance('INSTANCE')/PrevSubmissionID"><xforms:label/><xforms:help>Please provide your original Submission ID.</xforms:help></xforms:input><itemlocation><x>27</x><y>412</y><width>288</width><height>28</height></itemlocation><scrollhoriz>wordwrap</scrollhoriz><fontinfo><fontname>Arial</fontname><size>10</size></fontinfo><format><datatype>string</datatype><constraints><mandatory>on</mandatory><patterns><pattern>^(?i:WBF)(\d{10,13})-(\d{3})$</pattern></patterns></constraints><presentation><casetype>upper</casetype></presentation></format><border>on</border><layoutflow>block</layoutflow><borderinfo><style>rounded</style><color>#2E6378</color></borderinfo><previous>global</previous></field><label sid="LABEL2"><itemlocation><x>27</x><y>445</y><width>853</width></itemlocation><value>What additional information do you wish to provide? Please describe. (max. 2000 characters)</value><fontinfo><fontname>Arial</fontname><size>12</size></fontinfo></label><label sid="asteriskLbl2"><itemlocation><x>17</x><y>445</y></itemlocation><value>*</value><fontcolor>#FF0000</fontcolor><fontinfo><fontname>Arial</fontname><size>11</size><effect>bold</effect></fontinfo></label><field sid="AdditionalInfo_Comm"><xforms:textarea ref="instance('INSTANCE')/AddInfoComm"><xforms:label/><xforms:help>Enter a description between 25 and 2000 characters long.<xforms:output value="if(string-length(.) = 0, 'Enter a description between 25 and 2000 characters long.', if(string-length(.) &lt;= 24, 'Your response must be more than 24 characters.&#xD;&#xA;Enter a description between 25 and 2000 characters long.', if(string-length(.) >= 2000, 'You have exceeded the character limit for this text box. Your response must be less than 2000 characters.&#xD;&#xA;Enter a description between 25 and 2000 characters long.', 'Enter a description between 25 and 2000 characters long.')))"/></xforms:help></xforms:textarea><itemlocation><x>27</x><y>480</y><width>853</width><height>396</height></itemlocation><scrollvert>always</scrollvert><scrollhoriz>wordwrap</scrollhoriz><borderinfo><style>rounded</style><color>#56565A</color></borderinfo><format><datatype>string</datatype><constraints><length><min>25</min><max>2147483647</max></length><mandatory>on</mandatory></constraints></format><fontinfo><fontname>Arial</fontname><size>10</size></fontinfo><display compute="global.global.printing == 'on' ? 'off' : 'on'">on</display></field><label sid="AdditionalInfo_Comm_PrintLabel"><itemlocation><x>27</x><width>853</width></itemlocation><borderinfo><style>rounded</style><color>#56565A</color></borderinfo><format><datatype>string</datatype><constraints><length><min>25</min><max>2000</max></length><mandatory>on</mandatory></constraints></format><fontinfo><fontname>Arial</fontname><size>10</size></fontinfo><xforms:output ref="instance('INSTANCE')/AddInfoComm"><xforms:label/></xforms:output><display compute="global.global.printing">on</display><border>on</border><layoutflow>block</layoutflow></label><data sid="OSC_WB_EN_Charcoal_small1"><mimetype>image/png</mimetype><filename>OSC_WB_EN_Charcoal_small.png</filename><mimedata encoding="base64-gzip">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</mimedata></data><button sid="nextPage_Btn"><itemlocation><width>165</width><height>48</height><offsety>10</offsety><x>715</x></itemlocation><type>pagedone</type><url compute="'#' +. global.pagenext"/><value>Next   &gt;</value><printvisible>off</printvisible><bgcolor>#40798F</bgcolor><fontcolor>#FFFFFF</fontcolor><gradient><type>none</type></gradient><fontinfo><fontname>Arial</fontname><size>12</size></fontinfo><custom:onActivated xfdl:compute="&#xA;
+            (toggle(activated, 'on', 'off') == '1') &#xA;
+            ? ((checkValidity('UI-validation focus-item', '', 'page') != '') &#xA;
+               ? '' &#xA;
+               : '') &#xA;
+            : ''"/><layoutflow>block</layoutflow></button><data sid="warningLogo1"><mimetype>image/png</mimetype><filename>warningLogo.png</filename><mimedata encoding="base64-gzip">H4sIAAAAAAAAAAFaA6X8iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAAAAXNSR0IA
+rs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAALvSURBVFhH7ZjPSutA
+FMbvE/kcfY666RMEFz5AddH1dZHN7UIoIgWRC0JxYTZKEUoFW7gGCq1QCkULlZJNbtLM5My/M3Mm
+VnHR4VvNmWZ+nTlz5kt+HRwe/SjtgVz6BNBpP05NbfHUUEb6qDJQM/yXMAK1Jc83TW08VVWBwvGC
+TZ9ukoSL9aTrlxNlPFnVgM66r2zqzeSuBv2d6I31Tx9DYbyHqgDVricbNu+y10JCyawdSCGiKgBd
+PayLOdPFsKNFYfHeR1da1C1voMbjkk2YTELjGrSepmyEun4UeQIFd888c+PoTI1ynYw+2KDXfl2L
+2uUHBDO9jY+1KAi4k8G1XwnwAYK9cE8DO2tH10QHarYnfLfkjSiXLY6gU8x9y+bqIgOdv7yz56+i
+UApxoGzZpP7azYyXACT9TSIChT1emLPDLFTCXBzo4+Fc6hd/ZSoQZpGA6tGcPdhU7nAgcV3n3VMt
+ahIBKLgd8OQxXgg2ICHz5EsGlRvoeLgqnohdmVYg8WwiA2S5gMD0oKbCAST+JYJVsgMJpsfyLJZh
++ALAprutkhUITI91tRnQKvqthbjgWLiskgUIMz2a2GTzrtIviWqVUCDR9Py1X9okIKpVwoDspkcW
+DYholcxAbtMjigokJqV6/5QyAdFMD4gOJB5bxCoZgHhdITsHlhwUIKmwGT2MBuRjepj+jKf5O9Cs
+o/Qjgjpp+sMKEGp6dqnAZpVkINz07FYWqyQC2UzProVaJQCymx5UwWVvUexyMh36/A3YDanwciCX
+6cEEGZq3ZHChDsBltkoMyGl6MJXFt2iyz3fJZJW2QATTg6l+z2t63ryPAtQ8bm8yIJrpQRW2R8s8
+G9arwa3/Fw/hlbJYiwzosjQGn/z4VUWtfsxXo7hxt1smfH36+gMvCg5/nrvbo82SuhHNufvxfhuv
+qiYkkHDyGZB0aaTlJ7qvFZstTeIIkq8Ekq6Y72xKkghAmYRk+qbGU6eUDPQDtAdyaQ9k1+HRf09h
+39qgtFMYAAAAAElFTkSuQmCClykcKVoDAAA=</mimedata></data><data sid="warningPrintLogo1"><mimetype>image/png</mimetype><filename>warningPrintLogo.png</filename><mimedata encoding="base64-gzip">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
+HfP6dFHOutYAAAAASUVORK5CYIKhZMxK7AYAAA==</mimedata></data><button sid="faq_Btn"><itemlocation><width>100</width><height>35</height><x>780</x><y>42</y></itemlocation><value>FAQ</value><printvisible>off</printvisible><bgcolor>#40798F</bgcolor><fontcolor>#FFFFFF</fontcolor><gradient><type>none</type></gradient><fontinfo><fontname>Arial</fontname><size>12</size></fontinfo><type>link</type><url compute="global.global.custom:faqUrl"/></button><spacer sid="vfd_spacer"><itemlocation><x>960</x><y>800</y><width>1</width><height>1</height></itemlocation></spacer></page><page sid="PAGE3"><global sid="global"><label>PART 3</label><custom:docDataIndex/><ufv_settings><pagedonewithformaterrors compute="(prevPage_Btn.activated == 'on') ? 'permit' : 'deny'">deny</pagedonewithformaterrors></ufv_settings><designer:pagesize>960;800</designer:pagesize><next>SUPPORTINGDOCFLAG1</next></global><button sid="oscLogo"><itemlocation><x>27</x><y>25</y></itemlocation><image>PAGE1.OSC_WB_EN_Charcoal_small1</image><imagemode suppresstext="false">resize</imagemode><bgcolor>#FFFFFF</bgcolor><type>link</type><url compute="global.global.custom:officeOfWbUrl"/><border>off</border><cursortype>hand</cursortype></button><field sid="SUPPORTINGDOCCOUNT1"><xforms:input ref="instance('VARIABLES')/SupportingDocCount"><xforms:label/></xforms:input><itemlocation><x>367</x><y>26</y><width>38</width></itemlocation><label>DOCCOUNT</label><scrollhoriz>wordwrap</scrollhoriz><scrollvert>fixed</scrollvert><layoutflow>block</layoutflow><visible>off</visible><printvisible>off</printvisible></field><label sid="formTitle"><itemlocation><x>27</x><y>122</y><width>853</width></itemlocation><value>Supplemental Whistleblower Submission Form</value><fontcolor>#2E6378</fontcolor><fontinfo><fontname>Arial</fontname><size>18</size><effect>bold</effect></fontinfo></label><label sid="sectionTitle1"><itemlocation><x>27</x><y>182</y><width>550</width></itemlocation><value>Supporting documents</value><fontcolor>#2E6378</fontcolor><fontinfo><fontname>Arial</fontname><size>16</size><effect>bold</effect></fontinfo></label><label sid="asteriskInfoLbl1"><itemlocation><x>27</x><y>230</y></itemlocation><value>*</value><fontcolor>#FF0000</fontcolor><fontinfo><fontname>Arial</fontname><size>11</size><effect>bold</effect></fontinfo></label><label sid="asteriskInfoLbl2"><itemlocation><x>39</x><y>231</y><width>214</width></itemlocation><value>Indicates mandatory field.</value></label><label sid="questionLbl1"><itemlocation><x>27</x><y>270</y><width>853</width></itemlocation><value>1) Do you currently have documents or materials in your possession or control, that you wish to provide to the OSC, to support the misconduct?</value><fontinfo><fontname>Arial</fontname><size>12</size></fontinfo></label><radiogroup sid="SUPPORTINGDOCFLAG1"><layoutflow>block</layoutflow><itemlocation><x>27</x><y>329</y></itemlocation><xforms:select1 appearance="full" ref="instance('INSTANCE')/SupportingDocFlag"><xforms:label/><xforms:itemset nodeset="instance('lists')/YesNo/choice"><xforms:label ref="."/><xforms:value ref="@value"/><xforms:extension><layoutflow>inline</layoutflow></xforms:extension></xforms:itemset><xforms:action ev:event="xforms-value-changed"><xforms:action if=". != 'yes'"><xforms:setvalue ref="instance('INSTANCE')/FilesToUploadFlag"/><xforms:setvalue ref="instance('INSTANCE')/FilesToMailFlag"/></xforms:action></xforms:action></xforms:select1><format><datatype>string</datatype><constraints><mandatory>on</mandatory></constraints></format><previous>global</previous></radiogroup><label sid="asteriskLbl1"><itemlocation><x>17</x><y>270</y></itemlocation><value>*</value><fontcolor>#FF0000</fontcolor><fontinfo><fontname>Arial</fontname><size>11</size><effect>bold</effect></fontinfo></label><pane sid="q1Yes_PANE"><xforms:group><xforms:label/><box sid="bgBox1"><itemlocation><x>0</x><y>10</y><width>900</width><height>541</height></itemlocation><bgcolor>#EEEEEE</bgcolor><borderinfo><style>solid</style></borderinfo><printbgcolor>#FFFFFF</printbgcolor><border>off</border></box><label sid="LABEL1"><itemlocation><x>40</x><y>30</y><width>820</width></itemlocation><value>Electronic supporting documents or materials up to 1 GB in total (up to 20 files) may be attached to this online report. If your files exceed this limit, any files past this limit must be sent directly to the OSC's Office of the Whistleblower, either by mail or courier.</value><fontinfo><fontname>Arial</fontname><size>9</size></fontinfo></label><label sid="LABEL7"><itemlocation><x>40</x><y>98</y><width>820</width></itemlocation><value>If you plan to send files to our office by mail or courier, please complete this report submission first and take note of the submission ID number that you will receive at time of online submission.</value><fontinfo><fontname>Arial</fontname><size>9</size></fontinfo></label><label sid="LABEL12"><itemlocation><x>40</x><y>149</y><width>820</width></itemlocation><value>In your mailing to us, please send the information to the OSC's Office of the Whistleblower at the address noted below, and include the following:</value><fontinfo><fontname>Arial</fontname><size>9</size></fontinfo></label><label sid="LABEL13"><itemlocation><x>80</x><y>200</y><width>735</width></itemlocation><value>1. your name(s);
+2. submission ID;
+3. electronic files saved on a physical storage medium, such as a USB thumb drive;
+4. a description of the document(s) or material(s) provided;
+5. a description of how the document(s) or material(s) were obtained; and
+6. whether your identity is likely to be revealed in any of these items.</value><fontinfo><fontname>Arial</fontname><size>9</size></fontinfo></label><label sid="LABEL15"><itemlocation><x>40</x><y>319</y><width>820</width></itemlocation><value>Mailing address:</value><fontinfo><fontname>Arial</fontname><size>9</size></fontinfo></label><box sid="addressBox1"><itemlocation><x>80</x><y>355</y><width>350</width><height>139</height></itemlocation><bgcolor>#2E6378</bgcolor><printbgcolor>#FFFFFF</printbgcolor><borderinfo><style>solid</style></borderinfo></box><label sid="LABEL5"><itemlocation><x>104</x><y>380</y><width>300</width></itemlocation><value>Office of the Whistleblower - Confidential
+Ontario Securities Commission
+22nd Floor
+20 Queen Street West
+Toronto, ON  M5H 3S8</value><fontinfo><fontname>Arial</fontname><size>9</size></fontinfo><fontcolor>#FFFFFF</fontcolor><printfontcolor>#000000</printfontcolor></label><label sid="LABEL6"><itemlocation><x>40</x><y>508</y></itemlocation><value>For future reference, this mailing address is also listed on the website of the       </value><fontinfo><fontname>Arial</fontname><size>9</size></fontinfo></label><button sid="owbLinkBtn"><itemlocation><after>LABEL6</after><offsetx>-30</offsetx></itemlocation><type>link</type><url compute="global.global.custom:officeOfWbUrl"/><value>Office of the Whistleblower</value><bgcolor>transparent</bgcolor><fontcolor compute="toggle(activated)=='1' ? '#800080' : fontcolor">#0000FF</fontcolor><border>off</border><cursortype>hand</cursortype><fontinfo><fontname>Arial</fontname><size>9</size><effect>underline</effect></fontinfo><justify>left</justify><borderinfo><style>solid</style></borderinfo></button><label sid="LABEL22"><itemlocation><after>owbLinkBtn</after><offsetx>-10</offsetx><width>29</width></itemlocation><value>.</value><fontinfo><fontname>Arial</fontname><size>9</size></fontinfo></label><spacer sid="SPACER2"><itemlocation><x>0</x><y>533</y><width>10</width><height>10</height></itemlocation></spacer></xforms:group><itemlocation><width>851</width><height>362</height><x>27</x><y>360</y></itemlocation><padding>0</padding><display compute="(SUPPORTINGDOCFLAG1.value == 'yes') ? 'on' : 'off'">on</display></pane><label sid="questionLbl2"><itemlocation><width>853</width><below>q1Yes_PANE</below></itemlocation><value>Do you have files to upload?</value><fontinfo><fontname>Arial</fontname><size>12</size></fontinfo><display compute="q1Yes_PANE.display"/></label><radiogroup sid="FILESTOUPLOADFLAG1"><layoutflow>block</layoutflow><itemlocation><below>questionLbl2</below></itemlocation><xforms:select1 appearance="full" ref="instance('INSTANCE')/FilesToUploadFlag"><xforms:label/><xforms:itemset nodeset="instance('lists')/YesNo/choice"><xforms:label ref="."/><xforms:value ref="@value"/><xforms:extension><layoutflow>inline</layoutflow></xforms:extension></xforms:itemset><xforms:action ev:event="xforms-value-changed"><xforms:action if=". != 'yes'"><xforms:delete nodeset="instance('INSTANCE')/SupportingDoc_row[position() > 1]"/><xforms:setvalue ref="instance('INSTANCE')/SupportingDoc_row[1]/SupportingDoc_DESC"/><xforms:setvalue ref="instance('INSTANCE')/SupportingDoc_row[1]/SupportingDoc_HowObtained"/><xforms:setvalue ref="instance('INSTANCE')/SupportingDoc_row[1]/SupportingDoc_RevealIdent"/><xforms:setvalue ref="instance('INSTANCE')/SupportingDoc_row[1]/SupportingDoc_Filename"/></xforms:action></xforms:action></xforms:select1><display compute="q1Yes_PANE.display"/><format><datatype>string</datatype><constraints><mandatory>on</mandatory></constraints></format></radiogroup><label sid="asteriskLbl2"><itemlocation><before>questionLbl2</before><x>17</x></itemlocation><value>*</value><fontcolor>#FF0000</fontcolor><fontinfo><fontname>Arial</fontname><size>11</size><effect>bold</effect></fontinfo><display compute="q1Yes_PANE.display"/></label><pane sid="q2Yes_PANE"><xforms:group><xforms:label/><box sid="warningBox1"><itemlocation><x>15</x><y>10</y><width>900</width><height>134</height></itemlocation><bgcolor>#2E6378</bgcolor><borderinfo><style>solid</style></borderinfo><printbgcolor>#FFFFFF</printbgcolor><border>off</border></box><label sid="warningPrintLbl1"><value/><image>PAGE1.warningPrintLogo1</image><itemlocation><x>30</x><y>25</y></itemlocation><imagemode suppresstext="false">scale</imagemode><visible>off</visible><printvisible>on</printvisible></label><label sid="warningLbl1"><value/><image>PAGE1.warningLogo1</image><itemlocation><x>30</x><y>25</y></itemlocation><visible>on</visible><printvisible>off</printvisible><imagemode suppresstext="false">scale</imagemode></label><label sid="LABEL14"><itemlocation><x>89</x><y>23</y><width>779</width></itemlocation><value>Please do not reference or attach any documents that may reflect legal advice, that are communications with a lawyer for the purpose of obtaining legal advice or related working papers or that may otherwise be subject to solicitor-client privilege.</value><fontcolor>#FFFFFF</fontcolor><printfontcolor>#000000</printfontcolor><fontinfo><fontname>Arial</fontname><size>9</size></fontinfo></label><button sid="uploadFilesBtn1"><itemlocation><width>150</width><height>35</height><x>15</x><y>153</y></itemlocation><value>Upload Files</value><bgcolor>#40798F</bgcolor><fontcolor>#FFFFFF</fontcolor><gradient><type>none</type></gradient><fontinfo><fontname>Arial</fontname><size>12</size></fontinfo><printvisible>off</printvisible><custom:onbuttonclick xfdl:compute="(toggle(activated, 'off', 'on') == '1') ? viewer.launchModalDialog(PAGE1.UPLOADSERVERURL1.value +. '/page/upload/' +. PAGE1.UPLOADFORMID1.value, 'Upload Page', '1000', '800', 'false', 'true') : ''"/><active compute="(PAGE1.UPLOADFORMID1.value != '') ? 'on' : 'off'"/></button><label sid="questionLbl3"><itemlocation><width>853</width><y>198</y><x>15</x></itemlocation><value>For each file you upload, please provide the following details:</value><fontinfo><fontname>Arial</fontname><size>12</size></fontinfo></label><table sid="supportingDoc_TABLE"><xforms:repeat id="SUPPORTINGDOCTABLE1" nodeset="instance('INSTANCE')/SupportingDoc_row"><label sid="docNumberLbl"><itemlocation><x>12</x><y>0</y></itemlocation><value compute="'Document #' +. xforms.getPosInSet()">Document #1</value><fontinfo><fontname>Arial</fontname><size>11</size><effect>bold</effect></fontinfo></label><label sid="SUPPORTINGDOC_DESC_LABEL1"><value>Document description (please be specific)</value><itemlocation><x>12</x><y>33</y><width>864</width></itemlocation></label><label sid="asteriskLbl3"><itemlocation><x>2</x><y>33</y></itemlocation><value>*</value><fontcolor>#FF0000</fontcolor><fontinfo><fontname>Arial</fontname><size>11</size><effect>bold</effect></fontinfo></label><field sid="SUPPORTINGDOC_DESC1"><xforms:input ref="SupportingDoc_DESC"><xforms:label/><xforms:help>Enter a description between 2 and 200 characters long.<xforms:output value="if(string-length(.) = 0, 'Enter a description between 2 and 200 characters long.', if(string-length(.) &lt;= 1, 'Your response must be more than 1 character.&#xD;&#xA;Enter a description between 2 and 200 characters long.', if(string-length(.) >= 200, 'You have exceeded the character limit for this text box. Your response must be less than 200 characters.&#xD;&#xA;Enter a description between 2 and 200 characters long.', 'Enter a description between 2 and 200 characters long.')))"/></xforms:help></xforms:input><scrollhoriz>wordwrap</scrollhoriz><scrollvert>always</scrollvert><layoutflow>block</layoutflow><itemlocation><x>12</x><y>64</y><width>864</width></itemlocation><format><datatype>string</datatype><constraints><mandatory>on</mandatory><length><min>2</min><max>2147483647</max></length></constraints></format><size><height>2</height></size><display compute="global.global.printing == 'on' ? 'off' : 'on'">on</display></field><label sid="SUPPORTINGDOC_DESC1_PRINTLABEL"><layoutflow>block</layoutflow><xforms:output ref="SupportingDoc_DESC"><xforms:label/></xforms:output><itemlocation><x>12</x><width>864</width></itemlocation><border>on</border><display compute="global.global.printing">on</display></label><label sid="asteriskLbl4"><itemlocation><x>2</x></itemlocation><value>*</value><fontcolor>#FF0000</fontcolor><fontinfo><fontname>Arial</fontname><size>11</size><effect>bold</effect></fontinfo><layoutflow>block</layoutflow></label><label sid="SUPPORTINGDOC_HOWOBTAINED_LABEL1"><value>How was it obtained</value><itemlocation><x>12</x><width>864</width></itemlocation></label><field sid="SUPPORTINGDOC_HOWOBTAINED1"><xforms:input ref="SupportingDoc_HowObtained"><xforms:label/><xforms:help>Enter a description between 2 and 200 characters long.
+                           
+                        <xforms:output value="if(string-length(.) = 0, 'Enter a description between 2 and 200 characters long.', if(string-length(.) &lt;= 1, 'Your response must be more than 1 character.&#xD;&#xA;Enter a description between 2 and 200 characters long.', if(string-length(.) >= 200, 'You have exceeded the character limit for this text box. Your response must be less than 200 characters.&#xD;&#xA;Enter a description between 2 and 200 characters long.', 'Enter a description between 2 and 200 characters long.')))"/></xforms:help></xforms:input><scrollhoriz>wordwrap</scrollhoriz><scrollvert>always</scrollvert><layoutflow>block</layoutflow><format><datatype>string</datatype><constraints><mandatory>on</mandatory><length><min>2</min><max>2147483647</max></length></constraints></format><itemlocation><x>12</x><width>864</width></itemlocation><size><height>2</height></size><display compute="global.global.printing == 'on' ? 'off' : 'on'">on</display></field><label sid="SUPPORTINGDOC_HOWOBTAINED1_PRINTLABEL"><layoutflow>block</layoutflow><xforms:output ref="SupportingDoc_HowObtained"><xforms:label/></xforms:output><itemlocation><x>12</x><width>864</width></itemlocation><border>on</border><display compute="global.global.printing">on</display></label><label sid="asteriskLbl5"><value>*</value><fontcolor>#FF0000</fontcolor><fontinfo><fontname>Arial</fontname><size>11</size><effect>bold</effect></fontinfo><itemlocation><x>2</x></itemlocation><layoutflow>block</layoutflow></label><label sid="SUPPORTINGDOC_REVEALIDENT_LABEL1"><value>Is it likely to reveal your identity? If yes, please explain</value><itemlocation><x>12</x><width>864</width></itemlocation></label><field sid="SUPPORTINGDOC_REVEALIDENT1"><xforms:input ref="SupportingDoc_RevealIdent"><xforms:label/><xforms:help>Enter a description between 2 and 200 characters long.
+                           
+                        <xforms:output value="if(string-length(.) = 0, 'Enter a description between 2 and 200 characters long.', if(string-length(.) &lt;= 1, 'Your response must be more than 1 character.&#xD;&#xA;Enter a description between 2 and 200 characters long.', if(string-length(.) >= 200, 'You have exceeded the character limit for this text box. Your response must be less than 200 characters.&#xD;&#xA;Enter a description between 2 and 200 characters long.', 'Enter a description between 2 and 200 characters long.')))"/></xforms:help></xforms:input><scrollhoriz>wordwrap</scrollhoriz><scrollvert>always</scrollvert><layoutflow>block</layoutflow><itemlocation><x>12</x><width>864</width></itemlocation><next>Detach_Btn1</next><format><datatype>string</datatype><constraints><mandatory>on</mandatory><length><min>2</min><max>2147483647</max></length></constraints></format><size><height>2</height></size><display compute="global.global.printing == 'on' ? 'off' : 'on'">on</display></field><label sid="SUPPORTINGDOC_REVEALIDENT1_PRINTLABEL"><layoutflow>block</layoutflow><xforms:output ref="SupportingDoc_RevealIdent"><xforms:label/></xforms:output><itemlocation><x>12</x><width>864</width></itemlocation><border>on</border><display compute="global.global.printing">on</display></label><label sid="asteriskLbl6"><value>*</value><fontcolor>#FF0000</fontcolor><fontinfo><fontname>Arial</fontname><size>11</size><effect>bold</effect></fontinfo><itemlocation><x>2</x></itemlocation><layoutflow>block</layoutflow></label><label sid="SUPPORTINGDOC_FILENAME_LABEL1"><value>Document file name</value><itemlocation><x>12</x><width>864</width></itemlocation></label><field sid="SUPPORTINGDOC_FILENAME1"><xforms:input ref="SupportingDoc_Filename"><xforms:label/><xforms:help>Enter a description between 2 and 200 characters long.
+                           
+                        <xforms:output value="if(string-length(.) = 0, 'Enter a description between 2 and 200 characters long.', if(string-length(.) &lt;= 1, 'Your response must be more than 1 character.&#xD;&#xA;Enter a description between 2 and 200 characters long.', if(string-length(.) >= 200, 'You have exceeded the character limit for this text box. Your response must be less than 200 characters.&#xD;&#xA;Enter a description between 2 and 200 characters long.', 'Enter a description between 2 and 200 characters long.')))"/></xforms:help></xforms:input><scrollhoriz>wordwrap</scrollhoriz><scrollvert>always</scrollvert><layoutflow>block</layoutflow><itemlocation><x>12</x><width>864</width></itemlocation><format><datatype>string</datatype><constraints><mandatory>on</mandatory><length><min>2</min><max>2147483647</max></length></constraints></format><size><height>2</height></size><display compute="global.global.printing == 'on' ? 'off' : 'on'">on</display></field><label sid="SUPPORTINGDOC_FILENAME1_PRINTLABEL"><layoutflow>block</layoutflow><xforms:output ref="SupportingDoc_Filename"><xforms:label/></xforms:output><itemlocation><x>12</x><width>864</width></itemlocation><border>on</border><display compute="global.global.printing">on</display></label><button sid="delDocumentBtn"><xforms:trigger ref="."><xforms:label/><xforms:help>Delete This Document</xforms:help><xforms:action ev:event="DOMActivate"><xforms:action if="count(../SupportingDoc_row) = 1"><xforms:setvalue ref="SupportingDoc_DESC"/><xforms:setvalue ref="SupportingDoc_HowObtained"/><xforms:setvalue ref="SupportingDoc_RevealIdent"/><xforms:setvalue ref="SupportingDoc_Filename"/></xforms:action><xforms:action if="count(../SupportingDoc_row) > 1"><xforms:delete nodeset="." at="position()"/></xforms:action><xforms:setfocus control="SUPPORTINGDOCTABLE1"/></xforms:action></xforms:trigger><itemlocation><x>877</x><offsety>-34</offsety></itemlocation><value/><printvisible>off</printvisible><border>off</border><bgcolor>#FFFFFF</bgcolor><image>PAGE3.deleteBtn1</image><imagemode suppresstext="false">scale</imagemode><visible compute="(xforms.getSizeOfSet() == '1') ? 'off' : 'on'"/><display compute="PAGE1.FORMMODIFIABLE.value"/></button><field sid="ROWNUM1"><xforms:input ref="@number"><xforms:label/></xforms:input><scrollhoriz>wordwrap</scrollhoriz><scrollvert>fixed</scrollvert><layoutflow>block</layoutflow><itemlocation><x>146</x><y>1</y><width>23</width></itemlocation><visible>off</visible><printvisible>off</printvisible></field></xforms:repeat><itemlocation><x>0</x><y>240</y><width>900</width><height>145</height></itemlocation><rowpadding>5</rowpadding></table><button sid="addDocumentBtn"><xforms:trigger><xforms:label/><xforms:action ev:event="DOMActivate"><xforms:insert context="instance('INSTANCE')"
+                                    nodeset="instance('INSTANCE')/SupportingDoc_row"
+                                    at="last()"
+                                    position="after"
+                                    origin="instance('TEMPLATE')/SupportingDoc_row"/><xforms:setvalue ref="instance('VARIABLES')/SupportingDocCount" value=". + 1"/><xforms:setvalue ref="instance('INSTANCE')/SupportingDoc_row[position() = last()]/@number"
+                                      value="instance('VARIABLES')/SupportingDocCount"/><xforms:setfocus control="SUPPORTINGDOCTABLE1"/></xforms:action></xforms:trigger><itemlocation><below>supportingDoc_TABLE</below><x>15</x></itemlocation><value/><printvisible>off</printvisible><border>off</border><printvisible>off</printvisible><display compute="addDocumentIcon.display"/><image>PAGE3.addDocBtn1</image><imagemode suppresstext="false">clip</imagemode></button><label sid="LABEL2"><itemlocation><x>89</x><y>89</y><width>779</width></itemlocation><value>Once you have uploaded any files and closed the file upload window, you will not be able to view or delete any of the uploaded files.</value><fontcolor>#FFFFFF</fontcolor><printfontcolor>#000000</printfontcolor><fontinfo><fontname>Arial</fontname><size>9</size></fontinfo></label><spacer sid="SPACER1"><itemlocation><below>addDocumentBtn</below><width>1</width><height>1</height></itemlocation></spacer></xforms:group><itemlocation><width>851</width><height>328</height><below>FILESTOUPLOADFLAG1</below><x>12</x></itemlocation><padding>0</padding><display compute="(FILESTOUPLOADFLAG1.value == 'yes') ? 'on' : 'off'">on</display></pane><label sid="questionLbl4"><itemlocation><width>853</width><below>q2Yes_PANE</below><x>27</x></itemlocation><value>Do you have files stored on physical storage media and/or physical documents to mail or courier to the Office of the Whistleblower?</value><fontinfo><fontname>Arial</fontname><size>12</size></fontinfo><display compute="q1Yes_PANE.display"/></label><radiogroup sid="FILESTOMAILFLAG1"><layoutflow>block</layoutflow><itemlocation><below>questionLbl4</below></itemlocation><xforms:select1 appearance="full" ref="instance('INSTANCE')/FilesToMailFlag"><xforms:label/><xforms:itemset nodeset="instance('lists')/YesNo/choice"><xforms:label ref="."/><xforms:value ref="@value"/><xforms:extension><layoutflow>inline</layoutflow></xforms:extension></xforms:itemset></xforms:select1><display compute="q1Yes_PANE.display"/><format><datatype>string</datatype><constraints><mandatory>on</mandatory></constraints></format></radiogroup><label sid="asteriskLbl7"><itemlocation><before>questionLbl4</before><x>17</x></itemlocation><value>*</value><fontcolor>#FF0000</fontcolor><fontinfo><fontname>Arial</fontname><size>11</size><effect>bold</effect></fontinfo><display compute="q1Yes_PANE.display"/></label><pane sid="q3Yes_PANE"><xforms:group><xforms:label/><box sid="bgBox2"><itemlocation><x>0</x><y>10</y><width>900</width><height>491</height></itemlocation><bgcolor>#EEEEEE</bgcolor><borderinfo><style>solid</style></borderinfo><printbgcolor>#FFFFFF</printbgcolor><border>off</border></box><label sid="LABEL18"><itemlocation><x>40</x><y>30</y><width>805</width></itemlocation><value>Please complete this report submission first, and take note of the submission ID number that you will receive at time of online submission.</value><fontinfo><fontname>Arial</fontname><size>9</size></fontinfo></label><label sid="LABEL23"><itemlocation><x>40</x><y>81</y><width>820</width></itemlocation><value>In your mailing to us, please send the information to the OSC's Office of the Whistleblower at the address noted below, and include the following:</value><fontinfo><fontname>Arial</fontname><size>9</size></fontinfo></label><label sid="LABEL24"><itemlocation><x>80</x><y>132</y><width>674</width></itemlocation><value>1. your name(s);
+2. submission ID;
+3. any physical documents or materials, or electronic files saved on a physical storage medium, such as a USB thumb drive;
+4. a description of the document(s) or material(s) provided;
+5. a description of how the document(s) or material(s) were obtained; and
+6. whether your identity is likely to be revealed in any of these items.</value><fontinfo><fontname>Arial</fontname><size>9</size></fontinfo></label><label sid="LABEL25"><itemlocation><x>40</x><y>268</y><width>820</width></itemlocation><value>Mailing address:</value><fontinfo><fontname>Arial</fontname><size>9</size></fontinfo></label><box sid="addressBox2"><itemlocation><x>80</x><y>304</y><width>350</width><height>139</height></itemlocation><bgcolor>#2E6378</bgcolor><printbgcolor>#FFFFFF</printbgcolor><borderinfo><style>solid</style></borderinfo></box><label sid="LABEL16"><itemlocation><x>104</x><y>329</y><width>300</width></itemlocation><value>Office of the Whistleblower - Confidential
+Ontario Securities Commission
+22nd Floor
+20 Queen Street West
+Toronto, ON  M5H 3S8</value><fontinfo><fontname>Arial</fontname><size>9</size></fontinfo><fontcolor>#FFFFFF</fontcolor><printfontcolor>#000000</printfontcolor></label><label sid="LABEL17"><itemlocation><x>40</x><y>457</y></itemlocation><value>For future reference, this mailing address is also listed on the website of the       </value><fontinfo><fontname>Arial</fontname><size>9</size></fontinfo></label><button sid="owbLinkBtn1"><itemlocation><after>LABEL17</after><offsetx>-30</offsetx></itemlocation><type>link</type><url compute="global.global.custom:officeOfWbUrl"/><value>Office of the Whistleblower</value><bgcolor>transparent</bgcolor><fontcolor compute="toggle(activated)=='1' ? '#800080' : fontcolor">#0000FF</fontcolor><border>off</border><cursortype>hand</cursortype><fontinfo><fontname>Arial</fontname><size>9</size><effect>underline</effect></fontinfo></button><label sid="LABEL26"><itemlocation><after>owbLinkBtn1</after><offsetx>-10</offsetx><width>29</width></itemlocation><value>.</value><fontinfo><fontname>Arial</fontname><size>9</size></fontinfo></label></xforms:group><itemlocation><width>851</width><height>318</height><x>15</x><y>330</y><below>FILESTOMAILFLAG1</below></itemlocation><padding>0</padding><display compute="(FILESTOMAILFLAG1.value == 'yes') ? 'on' : 'off'">on</display></pane><label sid="questionLbl5"><itemlocation><x>25</x><y>250</y><width>853</width><below>q3Yes_PANE</below><offsety>5</offsety></itemlocation><value>2) Are there additional documents or materials available to support the misconduct which are not in your possession or control?</value><fontinfo><fontname>Arial</fontname><size>12</size></fontinfo></label><radiogroup sid="OTHERDOCSFLAG1"><layoutflow>block</layoutflow><itemlocation><x>15</x><y>1605</y><below>questionLbl5</below></itemlocation><xforms:select1 appearance="full" ref="instance('INSTANCE')/OtherDocsFlag"><xforms:label/><xforms:itemset nodeset="instance('lists')/YesNoUnknown/choice"><xforms:label ref="."/><xforms:value ref="@value"/><xforms:extension><layoutflow>inline</layoutflow></xforms:extension></xforms:itemset><xforms:action ev:event="xforms-value-changed"><xforms:action if=". != 'yes'"><xforms:setvalue ref="instance('INSTANCE')/OtherDocs_DESC"/></xforms:action></xforms:action></xforms:select1><format><datatype>string</datatype><constraints><mandatory>on</mandatory></constraints></format></radiogroup><label sid="asteriskLbl8"><itemlocation><before>questionLbl5</before><x>17</x></itemlocation><value>*</value><fontcolor>#FF0000</fontcolor><fontinfo><fontname>Arial</fontname><size>11</size><effect>bold</effect></fontinfo></label><pane sid="q4Yes_PANE"><xforms:group><xforms:label/><label sid="questionLbl6"><itemlocation><width>803</width><y>10</y><x>15</x></itemlocation><value>Please describe the additional documents and the location of each document. Please also indicate if any of the additional documents are likely to reveal your identity. (max. 1000 characters)</value><fontinfo><fontname>Arial</fontname><size>12</size></fontinfo></label><box sid="warningBox2"><itemlocation><x>15</x><y>97</y><width>900</width><height>84</height></itemlocation><bgcolor>#2E6378</bgcolor><borderinfo><style>solid</style></borderinfo><printbgcolor>#FFFFFF</printbgcolor><border>off</border></box><label sid="warningPrintLbl2"><value/><image>PAGE1.warningPrintLogo1</image><itemlocation><x>30</x><y>112</y></itemlocation><imagemode suppresstext="false">scale</imagemode><visible>off</visible><printvisible>on</printvisible></label><label sid="warningLbl2"><value/><image>PAGE1.warningLogo1</image><itemlocation><x>30</x><y>112</y></itemlocation><visible>on</visible><printvisible>off</printvisible><imagemode suppresstext="false">scale</imagemode></label><label sid="LABEL11"><itemlocation><x>89</x><y>110</y><width>779</width></itemlocation><value>Please do not reference any documents that may reflect legal advice, that are communications with a lawyer for the purpose of obtaining legal advice or related working papers or that may otherwise be subject to solicitor-client privilege. We do not expect you to obtain documents or other things that are not in your possession or control.</value><fontcolor>#FFFFFF</fontcolor><printfontcolor>#000000</printfontcolor><fontinfo><fontname>Arial</fontname><size>9</size></fontinfo></label><field sid="OTHERDOCS_DESC1"><scrollhoriz>wordwrap</scrollhoriz><scrollvert>always</scrollvert><layoutflow>block</layoutflow><itemlocation><width>853</width><x>15</x><y>199</y></itemlocation><display compute="global.global.printing == 'on' ? 'off' : 'on'"/><size><height>5</height></size><xforms:textarea ref="instance('INSTANCE')/OtherDocs_DESC"><xforms:label/><xforms:help>Enter a description between 5 and 1000 characters long.<xforms:output value="if(string-length(.) = 0, 'Enter a description between 5 and 1000 characters long.', if(string-length(.) &lt;= 4, 'Your response must be more than 4 characters.&#xD;&#xA;Enter a description between 5 and 1000 characters long.', if(string-length(.) >= 1000, 'You have exceeded the character limit for this text box. Your response must be less than 1000 characters.&#xD;&#xA;Enter a description between 5 and 1000 characters long.', 'Enter a description between 5 and 1000 characters long.')))"/></xforms:help></xforms:textarea><format><datatype>string</datatype><constraints><mandatory>on</mandatory><length><min>5</min><max>2147483647</max></length></constraints></format></field><label sid="OTHERDOCS_DESC1_LABEL"><itemlocation><width>853</width><x>15</x><y>199</y></itemlocation><display compute="global.global.printing"/><xforms:output ref="instance('INSTANCE')/OtherDocs_DESC"><xforms:label/></xforms:output><border>on</border></label><label sid="asteriskLbl9"><itemlocation><x>5</x><y>10</y></itemlocation><value>*</value><fontcolor>#FF0000</fontcolor><fontinfo><fontname>Arial</fontname><size>11</size><effect>bold</effect></fontinfo></label></xforms:group><itemlocation><width>851</width><height>254</height><below>OTHERDOCSFLAG1</below><x>12</x></itemlocation><padding>0</padding><display compute="(OTHERDOCSFLAG1.value == 'yes') ? 'on' : 'off'">on</display></pane><button sid="prevPage_Btn"><itemlocation><width>160</width><height>48</height><below>q4Yes_PANE</below><x>552</x><offsety>10</offsety></itemlocation><type>pagedone</type><url compute="'#' +. global.pageprevious"/><value>&lt;   Previous</value><printvisible>off</printvisible><bgcolor>#40798F</bgcolor><fontcolor>#FFFFFF</fontcolor><gradient><type>none</type></gradient><fontinfo><fontname>Arial</fontname><size>12</size></fontinfo></button><button sid="nextPage_Btn"><itemlocation><width>165</width><height>48</height><after>prevPage_Btn</after><x>715</x></itemlocation><type>pagedone</type><url compute="'#' +. global.pagenext"/><value>Next   &gt;</value><printvisible>off</printvisible><bgcolor>#40798F</bgcolor><fontcolor>#FFFFFF</fontcolor><gradient><type>none</type></gradient><fontinfo><fontname>Arial</fontname><size>12</size></fontinfo><custom:onActivated xfdl:compute="&#xA;
+            (toggle(activated, 'on', 'off') == '1') &#xA;
+            ? ((checkValidity('UI-validation focus-item', '', 'page') != '') &#xA;
+               ? '' &#xA;
+               : '') &#xA;
+            : ''"/></button><data sid="addDocBtn1"><mimetype>image/png</mimetype><filename>addDocBtn.png</filename><mimedata encoding="base64-gzip">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
+4O0AAAAASUVORK5CYIJjMoUdWAcAAA==</mimedata></data><data sid="deleteBtn1"><mimetype>image/png</mimetype><filename>deleteBtn.png</filename><mimedata encoding="base64-gzip">H4sIAAAAAAAAAAGPAXD+iVBORw0KGgoAAAANSUhEUgAAABsAAAAaCAIAAADJ6rCnAAAAAXNSR0IA
+rs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAEkSURBVEhLY/hPbUBX
+E399vHNhw4ypSYUN1skVeiBU41fYWzpj/6k7n6BKsAEcJj480VldAzYFO7KuXnTk4S+oYlSAaeKv
+J7tm+mEYgQ011Ox6CtWEBNBNfLJ1ogm6TnwoY+tLqE4YQDHxx7lF2FwHDL6WUBCCBygyaug89w2q
+HwyQTPx6pgldNZFo7pGvUDOAAGHik+UdGEqJRdHLEQEKN/Hu3Bx0dSSgnFXXoebATbyzORRNEWmo
+ZdUdqElQE38cmYss3bnrwqmTcPQQzr6HELxwatciZEc0HYEmT6iJr7f2wuX0kns3PIMI4wXP9mcg
+tCCSEc1MpL6vqR8zNEg9NEjhNMiFQEDtkgIMqFyagQG1S1wooGqtAAfUrbkoANQ28f9/AHRepNLM
+bxNaAAAAAElFTkSuQmCCaYNoSI8BAAA=</mimedata></data><button sid="faq_Btn"><itemlocation><width>100</width><height>35</height><x>780</x><y>42</y></itemlocation><value>FAQ</value><printvisible>off</printvisible><bgcolor>#40798F</bgcolor><fontcolor>#FFFFFF</fontcolor><gradient><type>none</type></gradient><fontinfo><fontname>Arial</fontname><size>12</size></fontinfo><type>link</type><url compute="global.global.custom:faqUrl"/></button><spacer sid="vfd_spacer"><itemlocation><x>960</x><y>800</y><width>1</width><height>1</height></itemlocation></spacer></page><!-- Do not modify this comment. Page filtering is enabled. (2) --><page sid="PAGE4"><global sid="global"><label>PART 3</label><custom:docDataIndex/><ufv_settings><pagedonewithformaterrors compute="(prevPage_Btn.activated == 'on') ? 'permit' : 'deny'">deny</pagedonewithformaterrors></ufv_settings><designer:pagesize>960;800</designer:pagesize><next>SUPLM_DECLARATION</next></global><button sid="oscLogo"><itemlocation><x>27</x><y>25</y></itemlocation><image>PAGE1.OSC_WB_EN_Charcoal_small1</image><imagemode suppresstext="false">resize</imagemode><bgcolor>#FFFFFF</bgcolor><type>link</type><url compute="global.global.custom:officeOfWbUrl"/><border>off</border><cursortype>hand</cursortype></button><label sid="formTitle"><itemlocation><x>27</x><y>122</y><width>853</width></itemlocation><value>Supplemental Whistleblower Submission Form</value><fontcolor>#2E6378</fontcolor><fontinfo><fontname>Arial</fontname><size>18</size><effect>bold</effect></fontinfo></label><label sid="sectionTitle1"><itemlocation><x>27</x><y>182</y><width>550</width></itemlocation><value>Whistleblower certification</value><fontcolor>#2E6378</fontcolor><fontinfo><fontname>Arial</fontname><size>16</size><effect>bold</effect></fontinfo></label><checkgroup sid="SUPLM_DECLARATION"><xforms:select appearance="full" ref="instance('INSTANCE')/SuplmDecl"><xforms:label/><xforms:itemset nodeset="instance('lists')/SuplmDeclaration/SuplmDeclChoice"><xforms:label ref="."/><xforms:value ref="@value"/></xforms:itemset></xforms:select><itemlocation><x>27</x><y>233</y></itemlocation><format><datatype>string</datatype><constraints><mandatory>on</mandatory></constraints></format><previous>global</previous></checkgroup><label sid="asteriskLbl10"><itemlocation><x>17</x><y>238</y></itemlocation><value>*</value><fontcolor>#FF0000</fontcolor><fontinfo><fontname>Arial</fontname><size>11</size><effect>bold</effect></fontinfo><display compute="q1Yes_PANE.display"/></label><label sid="LABEL22"><itemlocation><width>853</width><x>52</x><y>240</y></itemlocation><value>To the best of my knowledge and belief, all of the information submitted through this form is true and complete.</value></label><label sid="LABEL13"><itemlocation><width>853</width><below>LABEL22</below><x>27</x><offsety>10</offsety></itemlocation><value>Warning: It is an offence under the Ontario Securities Act to knowingly provide false or misleading information to the OSC.</value></label><label sid="LABEL10"><itemlocation><below>LABEL13</below><width>853</width><offsety>10</offsety><x>27</x></itemlocation><value>Please review the information above and click on "Submit" to complete your online submission.</value></label><label sid="LABEL15"><itemlocation><below>LABEL10</below><offsety>10</offsety><width>853</width></itemlocation><value>Once you submit this online form, you may print the completed form and you will receive a reference number to confirm that you made a supplemental online submission.</value></label><button sid="prevPage_Btn"><itemlocation><width>160</width><height>48</height><below>LABEL15</below><x>552</x><offsety>10</offsety></itemlocation><type>pagedone</type><url compute="'#' +. global.pageprevious"/><value>&lt;   Previous</value><printvisible>off</printvisible><bgcolor>#40798F</bgcolor><fontcolor>#FFFFFF</fontcolor><gradient><type>none</type></gradient><fontinfo><fontname>Arial</fontname><size>12</size></fontinfo></button><button sid="submitBtn"><itemlocation><width>165</width><height>48</height><after>prevPage_Btn</after><x>715</x></itemlocation><value>Submit</value><printvisible>off</printvisible><bgcolor>#40798F</bgcolor><fontcolor>#FFFFFF</fontcolor><gradient><type>none</type></gradient><fontinfo><fontname>Arial</fontname><size>12</size></fontinfo><type>done</type><url compute="(type == 'done') ? (global.global.custom:url) : ''"/><visible compute="PAGE1.FORMMODIFIABLE.value"/><custom:onActivated xfdl:compute="&#xA;
+            (toggle(activated, 'off', 'on') == '1') &#xA;
+            ? ((checkValidity('UI-validation') != '') &#xA;
+               ? set('type', 'done') &#xA;
+               : set('type', 'select') &#xA;
+                 +. ((PAGE1.UPLOADFORMID1.value != '') ? set('closeUploadFormBtn.activated', 'on') : set('formSubmitBtn.activated', 'on')) &#xA;
+              ) &#xA;
+            : ''"/><custom:afterActivated xfdl:compute="&#xA;
+            ((toggle(activated, 'on', 'off') == '1') and (type == 'done')) &#xA;
+            ? ((checkValidity('UI-validation focus-item') != '') &#xA;
+               ? '' &#xA;
+               : '' &#xA;
+              ) &#xA;
+            : ''"/></button><button sid="closeUploadFormBtn"><xforms:trigger><xforms:label>Submit</xforms:label><xforms:action ev:event="DOMActivate"><xforms:send submission="closeUploadFormId"/></xforms:action></xforms:trigger><itemlocation><x>640</x><y>90</y><width>184</width></itemlocation><value>Close Upload Form</value><printvisible>off</printvisible><visible>off</visible></button><field sid="CALLSUBMIT1"><xforms:input ref="instance('UPLOADFORM')/callSubmit"><xforms:label/></xforms:input><scrollhoriz>wordwrap</scrollhoriz><scrollvert>fixed</scrollvert><layoutflow>block</layoutflow><itemlocation><x>640</x><y>120</y><width>184</width></itemlocation><label>Call Submit</label><custom:onChange xfdl:compute="&#xA;
+            (toggle(value, 'false', 'true') == '1') &#xA;
+            ? set('formSubmitBtn.activated', 'on') &#xA;
+            : ''"/><visible>off</visible><printvisible>off</printvisible></field><button sid="formSubmitBtn"><itemlocation><x>640</x><y>180</y><width>184</width></itemlocation><value>Actual Submit</value><printvisible>off</printvisible><type>done</type><visible>off</visible><url compute="global.global.custom:url"/></button><pane sid="submissionInfo_PANE1"><xforms:group><xforms:label/><box sid="submissionInfo_Box"><itemlocation><x>0</x><y>0</y><width>308</width><height>134</height></itemlocation><bgcolor>#EEEEEE</bgcolor></box><label sid="SUBMISSION_ID"><xforms:output ref="instance('OSCMETADATA')/submissionID"><xforms:label/></xforms:output><itemlocation><x>6</x><y>15</y><width>298</width></itemlocation><fontinfo><fontname>Arial</fontname><size>10</size><effect>bold</effect></fontinfo></label><line sid="SUBMISSIONID_LINE1"><itemlocation><x>6</x><y>42</y><height>1</height><width>298</width></itemlocation><fontcolor>#000000</fontcolor></line><label sid="SUBMISSIONID_LABEL1"><value>Supplemental Submission ID</value><itemlocation><x>6</x><y>42</y><width>298</width></itemlocation><fontinfo><fontname>Arial</fontname><size>10</size></fontinfo></label><label sid="SUBMISSION_DATE"><xforms:output ref="instance('INSTANCE')/Submission_DT"><xforms:label/></xforms:output><itemlocation><x>6</x><y>72</y><width>298</width></itemlocation><format><datatype>string</datatype><!--<presentation>
+               <pattern>yyyy/MM/dd</pattern>
+            </presentation>--></format><fontinfo><fontname>Arial</fontname><size>10</size><effect>bold</effect></fontinfo></label><line sid="SUBMISSIONDATE_LINE1"><itemlocation><x>6</x><y>99</y><height>1</height><width>298</width></itemlocation><fontcolor>#000000</fontcolor></line><label sid="SUBMISSIONDATE_LABEL"><value>Date</value><itemlocation><x>6</x><y>99</y><width>298</width></itemlocation><fontinfo><fontname>Arial</fontname><size>10</size></fontinfo></label></xforms:group><itemlocation><width>314</width><height>139</height><below>LABEL15</below><x>27</x><offsety>10</offsety></itemlocation><printvisible>on</printvisible><visible compute="(PAGE1.SUBMISSIONID1.value == '') ? 'off' : 'on'">on</visible></pane><button sid="faq_Btn"><itemlocation><width>100</width><height>35</height><x>780</x><y>42</y></itemlocation><value>FAQ</value><printvisible>off</printvisible><bgcolor>#40798F</bgcolor><fontcolor>#FFFFFF</fontcolor><gradient><type>none</type></gradient><fontinfo><fontname>Arial</fontname><size>12</size></fontinfo><type>link</type><url compute="global.global.custom:faqUrl"/></button><spacer sid="vfd_spacer"><itemlocation><x>960</x><y>800</y><width>1</width><height>1</height></itemlocation></spacer></page></XFDL>
